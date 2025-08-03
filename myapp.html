@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheCurlyCode - Modern Web Development Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6, #d946ef);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #8b5cf6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .active::after {
+            width: 100%;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6, #d946ef);
+            width: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .week-card:nth-child(odd) {
+            border-left: 4px solid #6366f1;
+        }
+        
+        .week-card:nth-child(even) {
+            border-left: 4px solid #d946ef;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Sticky Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold gradient-text">TheCurlyCode</a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-700 hover:text-purple-600 transition">Home</a>
+                <a href="#roadmaps" class="nav-link text-gray-700 hover:text-purple-600 transition">Roadmaps</a>
+                <a href="#resources" class="nav-link text-gray-700 hover:text-purple-600 transition">Resources</a>
+                <a href="#study-plans" class="nav-link text-gray-700 hover:text-purple-600 transition">Study Plans</a>
+                <a href="#blogs" class="nav-link text-gray-700 hover:text-purple-600 transition">Blogs</a>
+                <a href="#jobs" class="nav-link text-gray-700 hover:text-purple-600 transition">Jobs</a>
+            </nav>
+            <button class="md:hidden text-gray-700" id="mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <div class="progress-bar"></div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white shadow-lg" id="mobile-menu">
+            <div class="px-4 py-2 flex flex-col space-y-3">
+                <a href="#home" class="nav-link text-gray-700 hover:text-purple-600 transition py-2">Home</a>
+                <a href="#roadmaps" class="nav-link text-gray-700 hover:text-purple-600 transition py-2">Roadmaps</a>
+                <a href="#resources" class="nav-link text-gray-700 hover:text-purple-600 transition py-2">Resources</a>
+                <a href="#study-plans" class="nav-link text-gray-700 hover:text-purple-600 transition py-2">Study Plans</a>
+                <a href="#blogs" class="nav-link text-gray-700 hover:text-purple-600 transition py-2">Blogs</a>
+                <a href="#jobs" class="nav-link text-gray-700 hover:text-purple-600 transition py-2">Jobs</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="py-20 px-4 bg-gradient-to-r from-purple-50 to-indigo-50">
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-800">Master <span class="gradient-text">Web Development</span> the Right Way</h1>
+                <p class="text-lg text-gray-600 mb-8">Curated learning resources, structured roadmaps, and practical projects to help you become a professional web developer.</p>
+                <div class="flex space-x-4">
+                    <a href="#resources" class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition duration-300">Start Learning</a>
+                    <a href="https://drive.google.com/drive/folders/1kFNX1Hxw04OyLfX6jjZ3gY3E7WADpPaE?usp=sharing" class="border-2 border-purple-500 text-purple-600 px-6 py-3 rounded-lg font-medium hover:bg-purple-50 transition duration-300">Frontend Pack</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="https://images.pexels.com/photos/6424590/pexels-photo-6424590.jpeg" alt="Web Development Illustration" class="w-full max-w-md">
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmaps Section -->
+    <section id="roadmaps" class="py-16 px-4 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Learning <span class="gradient-text">Roadmaps</span></h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Frontend Roadmap -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-laptop-code text-indigo-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Frontend Developer</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6">Step-by-step guide to becoming a modern frontend developer</p>
+                        <a href="https://roadmap.sh/frontend" target="_blank" class="inline-flex items-center text-purple-600 hover:text-purple-800 font-medium">
+                            View Roadmap
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Backend Roadmap -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-pink-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-server text-pink-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Backend Developer</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6">Learn backend development with Node.js, Python, Java, and more</p>
+                        <a href="https://roadmap.sh/backend" target="_blank" class="inline-flex items-center text-purple-600 hover:text-purple-800 font-medium">
+                            View Roadmap
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Full Stack Roadmap -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-code text-purple-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Full Stack Developer</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6">Become a complete developer by mastering both frontend and backend</p>
+                        <a href="https://roadmap.sh/full-stack" target="_blank" class="inline-flex items-center text-purple-600 hover:text-purple-800 font-medium">
+                            View Roadmap
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="py-16 px-4 bg-gray-50">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Essential <span class="gradient-text">Resources</span></h2>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- HTML Card -->
+                <div id="html" class="bg-white rounded-lg shadow-md overflow-hidden card-hover transition duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-orange-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-code text-orange-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">HTML</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">The foundation of all web development</p>
+                        <div class="space-y-3">
+                            <a href="HTML Handwritten Notes.pdf" class="block bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-gray-700 transition flex items-center">
+                                <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                                HTML Handwritten Notes
+                            </a>
+                            <a href="https://youtu.be/kUMe1FH4CHE" target="_blank" class="block bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-gray-700 transition flex items-center">
+                                <i class="fab fa-youtube text-red-500 mr-2"></i>
+                                HTML Full Video Course
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CSS Card -->
+                <div id="css" class="bg-white rounded-lg shadow-md overflow-hidden card-hover transition duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fab fa-css3-alt text-blue-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">CSS</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Style your websites beautifully</p>
+                        <div class="space-y-3">
+                            <a href="CSS_Complete_Notes.pdf" class="block bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-gray-700 transition flex items-center">
+                                <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                                CSS Handwritten Notes
+                            </a>
+                            <a href="https://youtu.be/yfoY53QXEnI" target="_blank" class="block bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-gray-700 transition flex items-center">
+                                <i class="fab fa-youtube text-red-500 mr-2"></i>
+                                CSS Full Video Course
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- JavaScript Card -->
+                <div id="javascript" class="bg-white rounded-lg shadow-md overflow-hidden card-hover transition duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                                <i class="fab fa-js-square text-yellow-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">JavaScript</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Make your websites interactive</p>
+                        <div class="space-y-3">
+                            <a href="JavaScript Handwritten Notes.pdf" class="block bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-gray-700 transition flex items-center">
+                                <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                                JS Handwritten Notes
+                            </a>
+                            <a href="https://youtu.be/PkZNo7MFNFg" target="_blank" class="block bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-gray-700 transition flex items-center">
+                                <i class="fab fa-youtube text-red-500 mr-2"></i>
+                                JS Full Video Course
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- React Card -->
+                <div id="react" class="bg-white rounded-lg shadow-md overflow-hidden card-hover transition duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fab fa-react text-blue-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">React.js</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Build modern user interfaces</p>
+                        <div class="space-y-3">
+                            <a href="React.js.pdf" class="block bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-gray-700 transition flex items-center">
+                                <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                                React Handwritten Notes
+                            </a>
+                            <a href="https://youtu.be/bMknfKXIFA8" target="_blank" class="block bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-gray-700 transition flex items-center">
+                                <i class="fab fa-youtube text-red-500 mr-2"></i>
+                                React Full Video Course
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- DSA Card -->
+                <div  id="dsa" class="bg-white rounded-lg shadow-md overflow-hidden card-hover transition duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-red-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-database text-red-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">DSA</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Data Structures and Algorithms</p>
+                        <div class="space-y-3">
+                            <a href="Complete DSA Notes.pdf" class="block bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-gray-700 transition flex items-center">
+                                <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                                DSA Handwritten Notes
+                            </a>
+                            <a href="https://youtu.be/RBSGKlAvoiM?si=7OeHwHjVynzetjL6" target="_blank" class="block bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-gray-700 transition flex items-center">
+                                <i class="fab fa-youtube text-red-500 mr-2"></i>
+                                DSA Full Video Course
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Git Card -->
+                <div id="git" class="bg-white rounded-lg shadow-md overflow-hidden card-hover transition duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-red-100 p-3 rounded-full mr-4">
+                                <i class="fab fa-git-alt text-red-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Git & GitHub</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Version control for developers</p>
+                        <div class="space-y-3">
+                            <a href="git-cheat-sheet-education.pdf" class="block bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-gray-700 transition flex items-center">
+                                <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                                Git & GitHub Cheat Sheet
+                            </a>
+                            <a href="https://youtu.be/RGOj5yH7evk" target="_blank" class="block bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-gray-700 transition flex items-center">
+                                <i class="fab fa-youtube text-red-500 mr-2"></i>
+                                Git & GitHub Full Video Course
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Study Plans Section -->
+    <section id="study-plans" class="py-16 px-4 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Structured <span class="gradient-text">Study Plans</span></h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-6">
+                    <!-- Week 1 -->
+                    <div class="week-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300 hover:shadow-md">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Week 1: HTML & CSS Fundamentals</h3>
+                            <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">Beginner</span>
+                        </div>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li>HTML5 document structure and semantic elements</li>
+                            <li>CSS selectors, box model, and positioning</li>
+                            <li>Responsive design with Flexbox and Grid</li>
+                            <li>Build a personal profile page project</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Week 2 -->
+                    <div class="week-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300 hover:shadow-md">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Week 2: JavaScript Basics</h3>
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Beginner</span>
+                        </div>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li>Variables, data types, and operators</li>
+                            <li>Functions, conditionals, and loops</li>
+                            <li>DOM manipulation and events</li>
+                            <li>Build a simple calculator project</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Week 3 -->
+                    <div class="week-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300 hover:shadow-md">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Week 3: Advanced JavaScript</h3>
+                            <span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm font-medium">Intermediate</span>
+                        </div>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li>ES6+ features (arrow functions, destructuring, etc.)</li>
+                            <li>Async JavaScript (callbacks, promises, async/await)</li>
+                            <li>Working with APIs (fetch, axios)</li>
+                            <li>Build a weather app project</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Week 4 -->
+                    <div class="week-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300 hover:shadow-md">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Week 4: React Fundamentals</h3>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Intermediate</span>
+                        </div>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li>React components, props, and state</li>
+                            <li>Hooks (useState, useEffect, etc.)</li>
+                            <li>React Router for navigation</li>
+                            <li>Build a task manager app project</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Week 5 -->
+                    <div class="week-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300 hover:shadow-md">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Week 5: Backend with Node.js</h3>
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Advanced</span>
+                        </div>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li>Node.js basics and npm packages</li>
+                            <li>Express.js framework for APIs</li>
+                            <li>MongoDB and Mongoose for databases</li>
+                            <li>Build a simple REST API project</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Week 6 -->
+                    <div class="week-card bg-gray-50 p-6 rounded-lg shadow-sm transition duration-300 hover:shadow-md">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Week 6: Full Stack Project</h3>
+                            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">Advanced</span>
+                        </div>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li>Connect React frontend with Node backend</li>
+                            <li>Authentication with JWT</li>
+                            <li>Deployment to Vercel and Heroku</li>
+                            <li>Build and deploy a full stack application</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-10 text-center">
+                    <a href="https://t.me/Code_Legacy" class="inline-block bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-8 py-3 rounded-lg font-medium hover:shadow-lg transition duration-300">
+                        TELEGRAM CHANNEL - Ultimate Coding Notes & Resources(@Code_Legacy)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blogs Section -->
+    <section id="blogs" class="py-16 px-4 bg-gray-50">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Latest <span class="gradient-text">Blogs</span></h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Web Development" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>June 15, 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>5 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Web development articles</h3>
+                        <p class="text-gray-600 mb-4">Explore these articles to learn more about web development.</p>
+                        <a href="https://www.codecademy.com/articles/subject/web-development" class="text-purple-600 hover:text-purple-800 font-medium inline-flex items-center">
+                            Read More
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Blog 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="Learning Strategies" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>June 8, 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>7 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">50 Articles to Master Web Dev</h3>
+                        <p class="text-gray-600 mb-4">Discover the best learning strategies for web development.</p>
+                        <a href="https://dev.to/florianrappl/50-articles-to-master-web-dev-4jhl" class="text-purple-600 hover:text-purple-800 font-medium inline-flex items-center">
+                            Read More
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Blog 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="React" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>June 1, 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>6 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">MDN</h3>
+                        <p class="text-gray-600 mb-4">Learn web development with MDN</p>
+                        <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development" class="text-purple-600 hover:text-purple-800 font-medium inline-flex items-center">
+                            Read More
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="https://web.dev/" class="inline-block border-2 border-purple-500 text-purple-600 px-8 py-3 rounded-lg font-medium hover:bg-purple-50 transition duration-300">
+                    More Articles
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jobs Section -->
+    <section id="jobs" class="py-16 px-4 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Find <span class="gradient-text">Jobs</span></h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <p class="text-center text-gray-600 mb-12">Explore these platforms to find web development jobs, internships, and freelance opportunities.</p>
+                
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/jobs/" target="_blank" class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300 border border-gray-200">
+                        <div class="p-6 flex flex-col items-center">
+                            <div class="bg-blue-100 p-4 rounded-full mb-4">
+                                <i class="fab fa-linkedin text-blue-600 text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">LinkedIn</h3>
+                            <p class="text-gray-600 text-center">Professional network with thousands of tech jobs</p>
+                        </div>
+                    </a>
+                    
+                    <!-- Glassdoor -->
+                    <a href="https://www.glassdoor.com/index.htm" target="_blank" class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300 border border-gray-200">
+                        <div class="p-6 flex flex-col items-center">
+                            <div class="bg-green-100 p-4 rounded-full mb-4">
+                                <i class="fas fa-glass-whiskey text-green-600 text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Glassdoor</h3>
+                            <p class="text-gray-600 text-center">Find jobs with company reviews and salaries</p>
+                        </div>
+                    </a>
+                    
+                    <!-- Internshala -->
+                    <a href="https://internshala.com/" target="_blank" class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300 border border-gray-200">
+                        <div class="p-6 flex flex-col items-center">
+                            <div class="bg-orange-100 p-4 rounded-full mb-4">
+                                <i class="fas fa-briefcase text-orange-600 text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Internshala</h3>
+                            <p class="text-gray-600 text-center">Best platform for internships in India</p>
+                        </div>
+                    </a>
+                    
+                    <!-- Naukri -->
+                    <a href="https://www.naukri.com/" target="_blank" class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300 border border-gray-200">
+                        <div class="p-6 flex flex-col items-center">
+                            <div class="bg-purple-100 p-4 rounded-full mb-4">
+                                <i class="fas fa-search-dollar text-purple-600 text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Naukri</h3>
+                            <p class="text-gray-600 text-center">India's leading job portal</p>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="mt-12 bg-indigo-50 rounded-xl p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Job Search Tips</h3>
+                    <ul class="list-disc pl-5 text-gray-600 space-y-2 max-w-2xl mx-auto">
+                        <li>Optimize your LinkedIn profile with relevant keywords</li>
+                        <li>Build a portfolio website to showcase your projects</li>
+                        <li>Contribute to open source to gain experience</li>
+                        <li>Prepare for technical interviews with coding challenges</li>
+                        <li>Network with professionals in your desired field</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold gradient-text mb-4">TheCurlyCode</h3>
+                    <p class="text-gray-400">The modern way to learn web development with structured roadmaps, curated resources, and practical projects.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#roadmaps" class="text-gray-400 hover:text-white transition">Roadmaps</a></li>
+                        <li><a href="#resources" class="text-gray-400 hover:text-white transition">Resources</a></li>
+                        <li><a href="#study-plans" class="text-gray-400 hover:text-white transition">Study Plans</a></li>
+                        <li><a href="#blogs" class="text-gray-400 hover:text-white transition">Blogs</a></li>
+                        <li><a href="#jobs" class="text-gray-400 hover:text-white transition">Jobs</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#html" class="text-gray-400 hover:text-white transition">HTML</a></li>
+                        <li><a href="#css" class="text-gray-400 hover:text-white transition">CSS</a></li>
+                        <li><a href="#javascript" class="text-gray-400 hover:text-white transition">JavaScript</a></li>
+                        <li><a href="#react" class="text-gray-400 hover:text-white transition">React</a></li>
+                        <li><a href="#git" class="text-gray-400 hover:text-white transition">Git & GitHub</a></li>
+                        <li><a href="#dsa" class="text-gray-400 hover:text-white transition">DSA</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect With Me</h4>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="https://www.instagram.com/theandyverma?igsh=Z3hveWMzbjdoc3J1" class="bg-gray-700 hover:bg-indigo-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://github.com/Abhishekkrvr" class="bg-gray-700 hover:bg-gray-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/abhishek-kr-verma-0942381b3/" class="bg-gray-700 hover:bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <!-- <a href="#" class="bg-gray-700 hover:bg-red-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-youtube"></i>
+                        </a> -->
+                    </div>
+                    <p class="text-gray-400">Subscribe to our newsletter</p>
+                    <div class="mt-3 flex">
+                        <input type="email" placeholder="Your email" class="bg-gray-800 text-white px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-500 w-full">
+                        <button class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-r-lg transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+                <p>&copy; 2025 TheCurlyCode(Abhishek Kr. Verma). All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // Progress bar on scroll
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.progress-bar').style.width = scrolled + '%';
+        });
+
+        // Highlight active nav link on scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', function() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
